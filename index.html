@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lajos Tauber Trio</title>
+  <meta name="description" content="Lajos Tauber Trio — live muziek voor jouw evenement, café of festival." />
+
+  <!-- ===================================================================
+       Lettertypes (laden via internet; vallen terug op systeemfonts offline)
+       =================================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===================================================================
+       KLEUREN & INSTELLINGEN  — pas hier makkelijk het thema aan
+       =================================================================== */
+    :root {
+      --bg:        #0f0e0c;   /* achtergrond, bijna zwart        */
+      --bg-soft:   #1a1815;   /* iets lichter vlak               */
+      --text:      #ece7df;   /* hoofdtekst, warm wit            */
+      --muted:     #a39c8e;   /* gedempte tekst                  */
+      --accent:    #c9a24b;   /* goud accent                     */
+      --accent-2:  #8a6d2f;   /* donkerder goud                  */
+      --border:    #2c2a25;   /* lijntjes                        */
+      --max:       1100px;    /* maximale breedte van de inhoud  */
+    }
+
+    /* ===================================================================
+       BASIS
+       =================================================================== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--text); }
+
+    section { padding: 6rem 1.5rem; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.72rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    h2.title { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 2.5rem; }
+
+    /* ===================================================================
+       NAVIGATIE
+       =================================================================== */
+    header.nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(15, 14, 12, 0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+    }
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .menu-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--bg-soft);
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .3s ease;
+      }
+      .nav-links.open { max-height: 320px; }
+      .nav-links a { padding: 1rem 1.5rem; border-top: 1px solid var(--border); }
+      .menu-toggle { display: block; }
+    }
+
+    /* ===================================================================
+       HERO
+       =================================================================== */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(201,162,75,0.10), transparent 60%),
+        var(--bg);
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 9vw, 6rem);
+      letter-spacing: 0.02em;
+    }
+    .hero .tagline {
+      color: var(--muted);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+    }
+    .hero .divider {
+      width: 60px; height: 1px; background: var(--accent);
+      margin: 2.5rem auto 0;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      border-radius: 2px;
+      transition: all .25s;
+    }
+    .btn:hover { background: var(--accent); color: var(--bg); }
+
+    /* ===================================================================
+       OVER ONS
+       =================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-grid p { color: var(--muted); margin-bottom: 1.2rem; max-width: 48ch; }
+    .about-photo {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--bg-soft), #211d17);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.85rem; text-align: center; padding: 1rem;
+    }
+    @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* ===================================================================
+       LEDEN
+       =================================================================== */
+    .members { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .member {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .member .avatar {
+      width: 90px; height: 90px; border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--bg);
+    }
+    .member h3 { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .member .role { color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; }
+    @media (max-width: 720px) { .members { grid-template-columns: 1fr; } }
+
+    /* ===================================================================
+       MUZIEK
+       =================================================================== */
+    .music-note { color: var(--muted); margin-bottom: 2rem; max-width: 55ch; }
+    .embed {
+      aspect-ratio: 16/9;
+      background: var(--bg-soft);
+      border: 1px dashed var(--border);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); text-align: center; padding: 1.5rem;
+    }
+    .embed iframe { width: 100%; height: 100%; border: 0; border-radius: 4px; }
+
+    /* ===================================================================
+       AGENDA
+       =================================================================== */
+    .gigs { list-style: none; }
+    .gig {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .gig .date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--accent);
+      min-width: 110px;
+    }
+    .gig .info { flex: 1; min-width: 200px; }
+    .gig .info .venue { color: var(--text); font-size: 1.05rem; }
+    .gig .info .city { color: var(--muted); font-size: 0.9rem; }
+    .gig .ticket { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ===================================================================
+       CONTACT
+       =================================================================== */
+    .contact { text-align: center; background: var(--bg-soft); }
+    .contact p { color: var(--muted); max-width: 45ch; margin: 0 auto 2rem; }
+    .contact .email {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      color: var(--text);
+    }
+    .socials { margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; }
+    .socials a { color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; }
+
+    /* ===================================================================
+       FOOTER
+       =================================================================== */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAVIGATIE ===================== -->
+  <header class="nav">
+    <div class="nav-inner">
+      <span class="brand">Lajos Tauber Trio</span>
+      <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+      <ul class="nav-links" id="navlinks">
+        <li><a href="#over">Over ons</a></li>
+        <li><a href="#leden">Leden</a></li>
+        <li><a href="#muziek">Muziek</a></li>
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="top">
+    <h1>Lajos Tauber Trio</h1>
+    <p class="tagline">Live muziek met ziel</p>
+    <span class="divider"></span>
+    <a class="btn" href="#contact">Boek ons</a>
+  </section>
+
+  <!-- ===================== OVER ONS ===================== -->
+  <section id="over">
+    <div class="wrap">
+      <p class="eyebrow">Over ons</p>
+      <div class="about-grid">
+        <div>
+          <h2 class="title">Drie muzikanten,<br/>één klank.</h2>
+          <p>
+            Het Lajos Tauber Trio brengt een warm, intiem geluid dat luisteraars
+            meeneemt van de eerste tot de laatste noot. (Pas deze tekst aan met
+            jullie eigen verhaal — hoe de band is ontstaan, jullie stijl en sfeer.)
+          </p>
+          <p>
+            Of het nu gaat om een sfeervolle avond in een café, een bruiloft of
+            een festivalpodium: wij maken er een onvergetelijke ervaring van.
+          </p>
+        </div>
+        <div class="about-photo">📷 Voeg hier een bandfoto toe</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LEDEN ===================== -->
+  <section id="leden" style="background: var(--bg-soft);">
+    <div class="wrap">
+      <p class="eyebrow">De band</p>
+      <h2 class="title">Leden</h2>
+      <div class="members">
+        <div class="member">
+          <div class="avatar">LT</div>
+          <h3>Lajos Tauber</h3>
+          <p class="role">Naam instrument</p>
+        </div>
+        <div class="member">
+          <div class="avatar">??</div>
+          <h3>Bandlid twee</h3>
+          <p class="role">Naam instrument</p>
+        </div>
+        <div class="member">
+          <div class="avatar">??</div>
+          <h3>Bandlid drie</h3>
+          <p class="role">Naam instrument</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MUZIEK ===================== -->
+  <section id="muziek">
+    <div class="wrap">
+      <p class="eyebrow">Luister</p>
+      <h2 class="title">Muziek</h2>
+      <p class="music-note">
+        Plak hieronder de "insluiten" (embed) code van een Spotify-, YouTube- of
+        SoundCloud-nummer. Vervang het vak hieronder door jullie eigen embed.
+      </p>
+      <div class="embed">
+        ♪ Embed van Spotify / YouTube / SoundCloud komt hier
+        <!-- Voorbeeld YouTube:
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== AGENDA ===================== -->
+  <section id="agenda" style="background: var(--bg-soft);">
+    <div class="wrap">
+      <p class="eyebrow">Live</p>
+      <h2 class="title">Agenda</h2>
+      <ul class="gigs">
+        <li class="gig">
+          <span class="date">12 jul</span>
+          <div class="info">
+            <div class="venue">Naam locatie</div>
+            <div class="city">Stad · 20:30</div>
+          </div>
+          <span class="ticket">Gratis entree</span>
+        </li>
+        <li class="gig">
+          <span class="date">26 jul</span>
+          <div class="info">
+            <div class="venue">Naam festival</div>
+            <div class="city">Stad · 15:00</div>
+          </div>
+          <span class="ticket">Tickets</span>
+        </li>
+        <li class="gig">
+          <span class="date">09 aug</span>
+          <div class="info">
+            <div class="venue">Naam café</div>
+            <div class="city">Stad · 21:00</div>
+          </div>
+          <span class="ticket">Gratis entree</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Boekingen</p>
+      <h2 class="title">Neem contact op</h2>
+      <p>Interesse om ons te boeken of gewoon hallo zeggen? Stuur ons een bericht.</p>
+      <a class="email" href="mailto:info@lajostaubertrio.nl">info@lajostaubertrio.nl</a>
+      <div class="socials">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="#">Spotify</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    © <span id="year"></span> Lajos Tauber Trio · Alle rechten voorbehouden
+  </footer>
+
+  <script>
+    // Jaartal in de footer automatisch invullen
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobiel menu sluiten na klikken op een link
+    document.querySelectorAll('#navlinks a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('navlinks').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
