@@ -10,3 +10,9 @@ Desktop.ini
 # Tijdelijke bestanden
 *.tmp
 *~
+
+# Ruwe media (foto's/video's) horen NIET in de website-repo:
+# te zwaar en niet nodig voor de site. Gebruikte beelden staan in /assets.
+Media/
+*.mp4
+*.mov
