@@ -1,503 +1,552 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lajos Tauber Trio — Blues</title>
-  <meta name="description" content="Lajos Tauber Trio — rauwe, soulvolle blues uit België. Live voor jouw café, festival of evenement." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lajos Tauber Trio — Blues uit België</title>
+<meta name="description" content="Lajos Tauber Trio — rauwe, soulvolle blues uit België. Live voor jouw café, festival of evenement." />
 
-  <!-- ===================================================================
-       Lettertypes (laden via internet; vallen terug op systeemfonts offline)
-       Oswald = posterachtige koppen · Inter = rustige lopende tekst
-       =================================================================== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<!-- Lettertypes: Fraunces (karaktervolle serif), Hanken Grotesk (tekst), Spline Sans Mono (liner-note labels) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,900&family=Hanken+Grotesk:wght@300;400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ===================================================================
-       KLEUREN & INSTELLINGEN  — pas hier makkelijk het thema aan
-       Smoky blues-palet: nachtblauw/antraciet met gedempt staalblauw accent
-       =================================================================== */
-    :root {
-      --bg:        #0c0e11;   /* achtergrond, nachtblauw-zwart   */
-      --bg-soft:   #14181d;   /* iets lichter vlak               */
-      --text:      #dde2e7;   /* hoofdtekst, koel wit            */
-      --muted:     #8a939e;   /* gedempte tekst, leisteengrijs   */
-      --accent:    #7fa1b8;   /* gedempt staalblauw accent       */
-      --accent-2:  #4f6c80;   /* donkerder blauw                 */
-      --border:    #242a31;   /* lijntjes                        */
-      --max:       1100px;    /* maximale breedte van de inhoud  */
-    }
+<style>
+/* =====================================================================
+   THEMA — smoky vinyl: warm nachtzwart, bone-tekst, whisky-amber + gedempt blauw
+   ===================================================================== */
+:root{
+  --ink:        #100e0b;   /* warme bijna-zwarte achtergrond   */
+  --ink-2:      #17140f;   /* iets lichter vlak                */
+  --paper:      #eae0cf;   /* warme bone tekst                 */
+  --paper-dim:  #9b917c;   /* gedempte tekst                   */
+  --ember:      #cf8a3c;   /* whisky-amber accent (warm)       */
+  --ember-deep: #a3641f;
+  --blue:       #6f9098;   /* gedempt smoky blauw (de "blues") */
+  --line:       rgba(234,224,207,0.13);
+  --max:        1180px;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans:  'Hanken Grotesk', system-ui, sans-serif;
+  --mono:  'Spline Sans Mono', ui-monospace, monospace;
+}
 
-    /* ===================================================================
-       BASIS
-       =================================================================== */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
 
-    html { scroll-behavior: smooth; }
+body{
+  font-family:var(--sans);
+  font-weight:300;
+  color:var(--paper);
+  line-height:1.75;
+  background:
+    radial-gradient(120% 75% at 50% -8%, rgba(207,138,60,0.11), transparent 55%),
+    radial-gradient(90% 55% at 85% 108%, rgba(111,144,152,0.09), transparent 60%),
+    var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
-    }
+/* Filmgrain over alles heen */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:9999; pointer-events:none;
+  opacity:.045; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* Vignet voor smoky randen */
+body::before{
+  content:""; position:fixed; inset:0; z-index:1; pointer-events:none;
+  box-shadow:inset 0 0 220px 40px rgba(0,0,0,0.65);
+}
 
-    h1, h2, h3 {
-      font-family: 'Oswald', 'Arial Narrow', sans-serif;
-      font-weight: 500;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-    }
+a{ color:inherit; text-decoration:none; }
+section{ position:relative; z-index:2; padding:7rem 1.6rem; }
+.wrap{ max-width:var(--max); margin:0 auto; }
 
-    a { color: var(--accent); text-decoration: none; transition: color .2s; }
-    a:hover { color: var(--text); }
+::selection{ background:var(--ember); color:var(--ink); }
 
-    section { padding: 6rem 1.5rem; }
+/* Liner-note label (mono) */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ember); display:inline-flex; align-items:center; gap:.6rem;
+  margin-bottom:1.6rem;
+}
+.eyebrow::before{ content:""; width:26px; height:1px; background:var(--ember); }
 
-    .wrap { max-width: var(--max); margin: 0 auto; }
+h1,h2,h3{ font-family:var(--serif); font-weight:600; line-height:1.02; letter-spacing:-.01em; }
+.section-title{ font-size:clamp(2.4rem,6vw,4.6rem); font-weight:900; margin-bottom:.6rem; }
 
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      font-size: 0.72rem;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
+/* =====================================================================
+   NAVIGATIE
+   ===================================================================== */
+header.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.3rem clamp(1.2rem,4vw,2.6rem);
+  transition:background .4s ease, padding .4s ease, border-color .4s ease;
+  border-bottom:1px solid transparent;
+}
+header.nav.scrolled{
+  background:rgba(16,14,11,.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  padding-top:.9rem; padding-bottom:.9rem;
+}
+.brand{ font-family:var(--serif); font-weight:900; font-size:1.25rem; letter-spacing:-.01em; }
+.brand b{ color:var(--ember); font-weight:900; }
+.nav-links{ display:flex; gap:2.1rem; list-style:none; }
+.nav-links a{
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--paper-dim); transition:color .2s; position:relative;
+}
+.nav-links a:hover{ color:var(--paper); }
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:-6px; width:0; height:1px; background:var(--ember); transition:width .25s;
+}
+.nav-links a:hover::after{ width:100%; }
+.menu-toggle{ display:none; background:none; border:0; color:var(--paper); font-size:1.5rem; cursor:pointer; }
+@media(max-width:820px){
+  .nav-links{
+    position:fixed; inset:0 0 0 auto; width:min(78vw,320px);
+    flex-direction:column; gap:0; padding:6rem 2rem;
+    background:var(--ink-2); border-left:1px solid var(--line);
+    transform:translateX(100%); transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .nav-links.open{ transform:none; }
+  .nav-links a{ font-size:.95rem; padding:1.1rem 0; border-bottom:1px solid var(--line); }
+  .menu-toggle{ display:block; z-index:101; }
+}
 
-    h2.title {
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 2.5rem;
-    }
+/* =====================================================================
+   HERO
+   ===================================================================== */
+.hero{
+  min-height:100svh; display:flex; align-items:center;
+  padding:7rem clamp(1.2rem,4vw,2.6rem) 0;
+  overflow:hidden;
+}
+.hero-grid{ max-width:var(--max); margin:0 auto; width:100%; position:relative; }
 
-    /* ===================================================================
-       NAVIGATIE
-       =================================================================== */
-    header.nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(12, 14, 17, 0.72);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 1.5rem;
-    }
-    .brand {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.3rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text);
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .nav-links a:hover { color: var(--accent); }
+.hero h1{
+  font-size:clamp(3.4rem,15vw,12rem);
+  font-weight:900; line-height:.86; letter-spacing:-.03em;
+  text-transform:uppercase; position:relative; z-index:3;
+}
+.hero h1 .trio{
+  display:block; font-weight:500; font-style:italic; text-transform:none;
+  color:var(--ember); letter-spacing:-.01em;
+  margin-left:.06em;
+}
+.hero .lede{
+  margin-top:1.8rem; max-width:30ch; color:var(--paper-dim);
+  font-size:clamp(1rem,1.5vw,1.18rem); position:relative; z-index:3;
+}
+.hero-cta{ margin-top:2.4rem; display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap; position:relative; z-index:3; }
+.btn{
+  font-family:var(--mono); font-size:.76rem; letter-spacing:.16em; text-transform:uppercase;
+  padding:1rem 1.8rem; border:1px solid var(--ember); color:var(--ember);
+  border-radius:1px; transition:all .25s;
+}
+.btn:hover{ background:var(--ember); color:var(--ink); }
+.btn-ghost{ color:var(--paper-dim); border:0; padding:1rem 0; display:inline-flex; gap:.6rem; align-items:center; }
+.btn-ghost:hover{ color:var(--paper); }
+.btn-ghost span{ transition:transform .25s; }
+.btn-ghost:hover span{ transform:translateX(5px); }
 
-    .menu-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+/* Draaiende plaat */
+.vinyl{
+  position:absolute; top:50%; right:-8%; transform:translateY(-50%);
+  width:min(48vw,540px); aspect-ratio:1; border-radius:50%; z-index:1; opacity:.92;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 0 2px, rgba(255,255,255,.035) 2px 3px, rgba(0,0,0,0) 3px 6px),
+    radial-gradient(circle at 38% 32%, rgba(255,255,255,.10), transparent 40%),
+    radial-gradient(circle at 50% 50%, #36302540 0 33%, transparent 33.4%),
+    radial-gradient(circle at 50% 50%, #2a241b 0%, #0c0b09 72%);
+  box-shadow:0 40px 90px -20px rgba(0,0,0,.8), inset 0 0 60px rgba(0,0,0,.6);
+  animation:spin 7s linear infinite;
+}
+.vinyl-label{
+  position:absolute; inset:33%; border-radius:50%;
+  background:radial-gradient(circle at 40% 35%, var(--ember), var(--ember-deep) 75%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:var(--ink); text-align:center; box-shadow:inset 0 0 0 1px rgba(0,0,0,.25);
+}
+.vinyl-label b{ font-family:var(--serif); font-weight:900; font-size:clamp(1.4rem,4vw,2.3rem); line-height:1; }
+.vinyl-label small{ font-family:var(--mono); font-size:.5rem; letter-spacing:.18em; margin-top:.35em; opacity:.8; }
+.vinyl-hole{ position:absolute; inset:48.6%; background:var(--ink); border-radius:50%; box-shadow:0 0 0 1px rgba(255,255,255,.08); }
+@keyframes spin{ to{ transform:translateY(-50%) rotate(360deg); } }
+@media(prefers-reduced-motion:reduce){ .vinyl{ animation:none; } }
+@media(max-width:820px){
+  .vinyl{ position:relative; top:auto; right:auto; transform:none; margin:3rem auto 0; width:min(70vw,340px); opacity:.5; animation-duration:14s; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+}
 
-    @media (max-width: 760px) {
-      .nav-links {
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        flex-direction: column;
-        gap: 0;
-        background: var(--bg-soft);
-        border-bottom: 1px solid var(--border);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height .3s ease;
-      }
-      .nav-links.open { max-height: 360px; }
-      .nav-links a { padding: 1rem 1.5rem; border-top: 1px solid var(--border); }
-      .menu-toggle { display: block; }
-    }
+/* Lopende tekstbalk */
+.marquee{
+  position:relative; z-index:2; overflow:hidden;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:1.1rem 0; background:rgba(0,0,0,.2);
+}
+.marquee-track{ display:flex; white-space:nowrap; width:max-content; animation:slide 32s linear infinite; }
+.marquee-track span{
+  font-family:var(--serif); font-style:italic; font-weight:500;
+  font-size:clamp(1.1rem,2.4vw,1.7rem); padding:0 1.4rem; color:var(--paper);
+}
+.marquee-track i{ color:var(--ember); font-style:normal; padding:0 .2rem; }
+@keyframes slide{ to{ transform:translateX(-50%); } }
+@media(prefers-reduced-motion:reduce){ .marquee-track{ animation:none; } }
 
-    /* ===================================================================
-       HERO
-       =================================================================== */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 4rem 1.5rem;
-      background:
-        radial-gradient(ellipse at 50% 10%, rgba(127,161,184,0.14), transparent 60%),
-        linear-gradient(180deg, #0c0e11 0%, #0a0c0f 100%);
-      position: relative;
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 11vw, 7rem);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      font-weight: 600;
-    }
-    .hero .tagline {
-      color: var(--muted);
-      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      margin-top: 1.5rem;
-    }
-    .hero .divider {
-      width: 60px; height: 1px; background: var(--accent);
-      margin: 2.5rem auto 0;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 2.5rem;
-      padding: 0.9rem 2.2rem;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.8rem;
-      border-radius: 2px;
-      transition: all .25s;
-    }
-    .btn:hover { background: var(--accent); color: var(--bg); }
+/* =====================================================================
+   OVER ONS
+   ===================================================================== */
+.about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,5rem); align-items:start; }
+.about-copy p{ color:var(--paper); font-size:1.08rem; margin-bottom:1.3rem; max-width:46ch; }
+.about-copy .lead::first-letter{
+  font-family:var(--serif); font-weight:900; font-size:4.4rem; line-height:.7;
+  float:left; padding:.06em .12em 0 0; color:var(--ember);
+}
+.about-copy em{ color:var(--paper-dim); font-style:italic; }
+.about-photo{
+  aspect-ratio:3/4; border:1px solid var(--line); border-radius:2px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(207,138,60,.14), transparent 60%),
+    linear-gradient(160deg,#1c1812,#0e0c09);
+  display:flex; align-items:flex-end; padding:1.4rem;
+  color:var(--paper-dim); font-family:var(--mono); font-size:.72rem; letter-spacing:.12em;
+  position:relative;
+}
+.about-photo::before{ content:"◷ 35mm"; position:absolute; top:1.4rem; right:1.4rem; font-family:var(--mono); font-size:.66rem; color:var(--paper-dim); letter-spacing:.1em; }
+@media(max-width:820px){ .about-grid{ grid-template-columns:1fr; } .about-photo{ aspect-ratio:4/3; } }
 
-    /* ===================================================================
-       OVER ONS
-       =================================================================== */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .about-grid p { color: var(--muted); margin-bottom: 1.2rem; max-width: 50ch; }
-    .about-photo {
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, var(--bg-soft), #1b2128);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--muted); font-size: 0.85rem; text-align: center; padding: 1rem;
-    }
-    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
+/* =====================================================================
+   BEZETTING
+   ===================================================================== */
+.members{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line); }
+.member{
+  padding:2.6rem 1.8rem 2.4rem; border-bottom:1px solid var(--line); border-right:1px solid var(--line);
+  position:relative; overflow:hidden; transition:background .3s;
+}
+.member:first-child{ border-left:1px solid var(--line); }
+.member .idx{ font-family:var(--mono); font-size:.74rem; letter-spacing:.16em; color:var(--ember); }
+.member .watermark{
+  position:absolute; right:-.2rem; bottom:-3.2rem; font-family:var(--serif); font-weight:900;
+  font-size:11rem; line-height:1; color:var(--paper); opacity:.04; pointer-events:none; transition:opacity .3s,color .3s;
+}
+.member h3{ font-size:2.1rem; font-weight:600; margin:1.6rem 0 .5rem; }
+.member .inst{ font-family:var(--mono); font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); }
+.member .city{ color:var(--paper-dim); margin-top:.3rem; font-size:.95rem; }
+.member:hover{ background:rgba(207,138,60,.05); }
+.member:hover .watermark{ opacity:.09; color:var(--ember); }
+@media(max-width:820px){
+  .members{ grid-template-columns:1fr; }
+  .member{ border-right:1px solid var(--line); border-left:1px solid var(--line); }
+}
 
-    /* ===================================================================
-       LEDEN
-       =================================================================== */
-    .members { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .member {
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2rem;
-      text-align: center;
-    }
-    .member .avatar {
-      width: 90px; height: 90px; border-radius: 50%;
-      margin: 0 auto 1.2rem;
-      background: linear-gradient(135deg, var(--accent-2), var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--bg);
-      letter-spacing: 0.05em;
-    }
-    .member h3 { font-size: 1.55rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.3rem; }
-    .member .role { color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; }
-    .member .city { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
-    @media (max-width: 760px) { .members { grid-template-columns: 1fr; } }
+/* =====================================================================
+   REPERTOIRE — als platen-tracklist
+   ===================================================================== */
+.rep-head{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem; margin-bottom:2.6rem; }
+.rep-note{ color:var(--paper-dim); max-width:42ch; font-size:1.02rem; }
+.tracklist{ list-style:none; }
+.track{
+  display:flex; align-items:baseline; gap:1rem; padding:1.05rem .4rem;
+  border-bottom:1px solid var(--line); transition:padding-left .25s, background .25s;
+}
+.track:hover{ background:rgba(234,224,207,.03); padding-left:1.1rem; }
+.track .no{ font-family:var(--mono); font-size:.82rem; color:var(--ember); min-width:2.4rem; }
+.track .name{ font-family:var(--serif); font-size:clamp(1.2rem,2.4vw,1.7rem); font-weight:600; transition:color .2s; }
+.track:hover .name{ color:var(--ember); }
+.track .tag{ font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); background:var(--blue); padding:.18em .55em; border-radius:1px; margin-left:.7rem; vertical-align:middle; }
+.track .dots{ flex:1; border-bottom:1px dotted var(--line); transform:translateY(-.35rem); min-width:1.5rem; }
+.track .by{ font-family:var(--mono); font-size:.84rem; color:var(--paper-dim); white-space:nowrap; }
+.track .time{ font-family:var(--mono); font-size:.84rem; color:var(--paper-dim); min-width:3rem; text-align:right; }
+@media(max-width:680px){
+  .track .by{ display:none; }
+}
 
-    /* ===================================================================
-       REPERTOIRE
-       =================================================================== */
-    .rep-note { color: var(--muted); margin-bottom: 2.5rem; max-width: 55ch; }
-    .rep-list {
-      list-style: none;
-      columns: 2;
-      column-gap: 3rem;
-    }
-    .rep-list li {
-      break-inside: avoid;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: baseline;
-    }
-    .rep-list .song { color: var(--text); font-weight: 400; }
-    .rep-list .artist { color: var(--muted); font-size: 0.85rem; text-align: right; white-space: nowrap; }
-    .rep-list .own { color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
-    @media (max-width: 760px) { .rep-list { columns: 1; } }
+/* =====================================================================
+   MUZIEK
+   ===================================================================== */
+.music-note{ color:var(--paper-dim); max-width:50ch; margin-bottom:2.2rem; }
+.embed{
+  aspect-ratio:16/7; border:1px dashed var(--line); border-radius:2px;
+  background:radial-gradient(circle at 50% 50%, rgba(111,144,152,.10), transparent 60%), var(--ink-2);
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:1.6rem;
+  color:var(--paper-dim); font-family:var(--mono); font-size:.82rem; letter-spacing:.06em;
+}
+.embed iframe{ width:100%; height:100%; border:0; border-radius:2px; }
 
-    /* ===================================================================
-       MUZIEK
-       =================================================================== */
-    .music-note { color: var(--muted); margin-bottom: 2rem; max-width: 55ch; }
-    .embed {
-      aspect-ratio: 16/9;
-      background: var(--bg-soft);
-      border: 1px dashed var(--border);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--muted); text-align: center; padding: 1.5rem;
-    }
-    .embed iframe { width: 100%; height: 100%; border: 0; border-radius: 4px; }
+/* =====================================================================
+   AGENDA
+   ===================================================================== */
+.gigs{ list-style:none; border-top:1px solid var(--line); }
+.gig{
+  display:grid; grid-template-columns:auto 1fr auto; gap:1.6rem; align-items:center;
+  padding:1.7rem .4rem; border-bottom:1px solid var(--line); transition:background .25s;
+}
+.gig:hover{ background:rgba(234,224,207,.03); }
+.gig .date{ font-family:var(--serif); font-weight:600; font-size:clamp(1.3rem,3vw,1.9rem); color:var(--ember); min-width:5.5rem; }
+.gig .venue{ font-size:1.12rem; color:var(--paper); }
+.gig .place{ font-family:var(--mono); font-size:.78rem; letter-spacing:.08em; color:var(--paper-dim); margin-top:.2rem; }
+.gig .ticket{ font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); }
+@media(max-width:560px){
+  .gig{ grid-template-columns:auto 1fr; }
+  .gig .ticket{ grid-column:2; }
+}
 
-    /* ===================================================================
-       AGENDA
-       =================================================================== */
-    .gigs { list-style: none; }
-    .gig {
-      display: flex; align-items: center; gap: 1.5rem;
-      padding: 1.4rem 0;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .gig .date {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.4rem; color: var(--accent);
-      min-width: 110px; letter-spacing: 0.03em;
-    }
-    .gig .info { flex: 1; min-width: 200px; }
-    .gig .info .venue { color: var(--text); font-size: 1.05rem; }
-    .gig .info .place { color: var(--muted); font-size: 0.9rem; }
-    .gig .ticket { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+/* =====================================================================
+   CONTACT
+   ===================================================================== */
+.contact{ text-align:center; }
+.contact .section-title{ margin-bottom:1.4rem; }
+.contact p{ color:var(--paper-dim); max-width:48ch; margin:0 auto 2.2rem; }
+.contact .email{
+  font-family:var(--serif); font-weight:900; font-style:italic;
+  font-size:clamp(1.7rem,6vw,3.6rem); color:var(--paper);
+  display:inline-block; border-bottom:1px solid var(--line); padding-bottom:.1em; transition:color .2s,border-color .2s;
+}
+.contact .email:hover{ color:var(--ember); border-color:var(--ember); }
+.socials{ margin-top:2.4rem; display:flex; gap:1.6rem; justify-content:center; flex-wrap:wrap; }
+.socials a{ font-family:var(--mono); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; color:var(--paper-dim); transition:color .2s; }
+.socials a:hover{ color:var(--ember); }
 
-    /* ===================================================================
-       CONTACT
-       =================================================================== */
-    .contact { text-align: center; background: var(--bg-soft); }
-    .contact p { color: var(--muted); max-width: 48ch; margin: 0 auto 2rem; }
-    .contact .email {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 2.6rem);
-      text-transform: uppercase; letter-spacing: 0.04em;
-      color: var(--text);
-    }
-    .socials { margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-    .socials a { color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; }
+/* =====================================================================
+   FOOTER
+   ===================================================================== */
+footer{
+  position:relative; z-index:2; text-align:center; padding:3rem 1.6rem;
+  border-top:1px solid var(--line); font-family:var(--mono);
+  font-size:.72rem; letter-spacing:.1em; color:var(--paper-dim);
+}
+footer b{ color:var(--ember); font-weight:500; }
 
-    /* ===================================================================
-       FOOTER
-       =================================================================== */
-    footer {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      color: var(--muted);
-      font-size: 0.8rem;
-      border-top: 1px solid var(--border);
-    }
-  </style>
+/* =====================================================================
+   ANIMATIES (scroll reveal + hero load)
+   ===================================================================== */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in{ opacity:1; transform:none; }
+
+.load{ opacity:0; transform:translateY(24px); animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards; }
+@keyframes rise{ to{ opacity:1; transform:none; } }
+</style>
 </head>
 <body>
 
-  <!-- ===================== NAVIGATIE ===================== -->
-  <header class="nav">
-    <div class="nav-inner">
-      <span class="brand">Lajos Tauber Trio</span>
-      <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
-      <ul class="nav-links" id="navlinks">
-        <li><a href="#over">Over ons</a></li>
-        <li><a href="#leden">Bezetting</a></li>
-        <li><a href="#repertoire">Repertoire</a></li>
-        <li><a href="#muziek">Muziek</a></li>
-        <li><a href="#agenda">Agenda</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<!-- ===================== NAVIGATIE ===================== -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand">Lajos Tauber <b>Trio</b></a>
+  <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#over">Over</a></li>
+    <li><a href="#bezetting">Bezetting</a></li>
+    <li><a href="#repertoire">Repertoire</a></li>
+    <li><a href="#muziek">Muziek</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#contact">Boekingen</a></li>
+  </ul>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="vinyl load" style="animation-delay:.05s" aria-hidden="true">
+      <div class="vinyl-label"><b>LTT</b><small>33⅓ · BLUES</small></div>
+      <div class="vinyl-hole"></div>
     </div>
-  </header>
+    <h1>
+      <span class="load" style="display:block;animation-delay:.1s">Lajos</span>
+      <span class="load" style="display:block;animation-delay:.2s">Tauber</span>
+      <span class="trio load" style="animation-delay:.3s">trio</span>
+    </h1>
+    <p class="lede load" style="animation-delay:.45s">
+      Rauwe, soulvolle blues uit België — opgebouwd in de smoky bars van Gent,
+      Knokke en Oostende.
+    </p>
+    <div class="hero-cta load" style="animation-delay:.6s">
+      <a class="btn" href="#contact">Boek ons</a>
+      <a class="btn-ghost" href="#muziek">Beluister <span>→</span></a>
+    </div>
+  </div>
+</section>
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero" id="top">
-    <h1>Lajos Tauber Trio</h1>
-    <p class="tagline">Rauwe &amp; soulvolle blues</p>
-    <span class="divider"></span>
-    <a class="btn" href="#contact">Boek ons</a>
-  </section>
+<!-- ===================== TICKER ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Rauwe blues <i>✦</i> Soul <i>✦</i> Live <i>✦</i> Gent <i>✦</i> Knokke <i>✦</i> Oostende <i>✦</i></span>
+    <span>Rauwe blues <i>✦</i> Soul <i>✦</i> Live <i>✦</i> Gent <i>✦</i> Knokke <i>✦</i> Oostende <i>✦</i></span>
+  </div>
+</div>
 
-  <!-- ===================== OVER ONS ===================== -->
-  <section id="over">
-    <div class="wrap">
-      <p class="eyebrow">Over ons</p>
-      <div class="about-grid">
-        <div>
-          <h2 class="title">Drie man,<br/>één groove.</h2>
-          <p>
-            Het Lajos Tauber Trio is een Belgisch bluestrio dat het vuur van de
-            grote bluesmeesters opnieuw aanwakkert. Van de slepende grooves van
-            Muddy Waters tot het rauwe gitaarwerk van Stevie Ray Vaughan en Gary
-            Clark Jr. — wij spelen de blues zoals die hoort: met lef en gevoel.
-          </p>
-          <p>
-            Naast de classics brengen we ook eigen werk. Of het nu een
-            sfeervolle avond in een café is, een festivalpodium of een privéfeest:
-            wij zorgen voor een avond vol soul. <em>(Pas deze tekst gerust aan
-            naar jullie eigen verhaal.)</em>
-          </p>
-        </div>
-        <div class="about-photo">📷 Voeg hier een bandfoto toe</div>
+<!-- ===================== OVER ONS ===================== -->
+<section id="over">
+  <div class="wrap">
+    <p class="eyebrow reveal">Kant A · 01 — Over de band</p>
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <h2 class="section-title">De blues, zoals die hoort.</h2>
+        <p class="lead">
+          Het Lajos Tauber Trio wakkert het vuur van de grote bluesmeesters opnieuw
+          aan. Van de slepende grooves van Muddy Waters tot het rauwe gitaarwerk van
+          Stevie Ray Vaughan en Gary Clark Jr. — wij spelen met lef en gevoel.
+        </p>
+        <p>
+          Naast de classics brengen we ook eigen werk. Of het nu een sfeervolle avond
+          in een café is, een festivalpodium of een privéfeest: drie man, één groove,
+          en een avond vol soul.
+        </p>
+        <p><em>(Pas deze tekst gerust aan naar jullie eigen verhaal.)</em></p>
+      </div>
+      <div class="about-photo reveal">Voeg hier een bandfoto toe →</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BEZETTING ===================== -->
+<section id="bezetting">
+  <div class="wrap">
+    <p class="eyebrow reveal">Kant A · 02 — De bezetting</p>
+    <h2 class="section-title reveal" style="margin-bottom:2.6rem">Het trio</h2>
+    <div class="members reveal">
+      <div class="member">
+        <span class="idx">01 / Gitaar</span>
+        <h3>Lajos Tauber</h3>
+        <p class="inst">Gitaar &amp; zang</p>
+        <p class="city">Gent</p>
+        <span class="watermark">01</span>
+      </div>
+      <div class="member">
+        <span class="idx">02 / Bas</span>
+        <h3>Wolf d'Anvers</h3>
+        <p class="inst">Basgitaar</p>
+        <p class="city">Knokke</p>
+        <span class="watermark">02</span>
+      </div>
+      <div class="member">
+        <span class="idx">03 / Drums</span>
+        <h3>Louis Feys</h3>
+        <p class="inst">Drums</p>
+        <p class="city">Oostende</p>
+        <span class="watermark">03</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== BEZETTING ===================== -->
-  <section id="leden" style="background: var(--bg-soft);">
-    <div class="wrap">
-      <p class="eyebrow">De band</p>
-      <h2 class="title">Bezetting</h2>
-      <div class="members">
-        <div class="member">
-          <div class="avatar">LT</div>
-          <h3>Lajos Tauber</h3>
-          <p class="role">Gitaar</p>
-          <p class="city">Gent</p>
-        </div>
-        <div class="member">
-          <div class="avatar">Wd</div>
-          <h3>Wolf d'Anvers</h3>
-          <p class="role">Bas</p>
-          <p class="city">Knokke</p>
-        </div>
-        <div class="member">
-          <div class="avatar">LF</div>
-          <h3>Louis Feys</h3>
-          <p class="role">Drums</p>
-          <p class="city">Oostende</p>
-        </div>
+<!-- ===================== REPERTOIRE ===================== -->
+<section id="repertoire">
+  <div class="wrap">
+    <div class="rep-head">
+      <div class="reveal">
+        <p class="eyebrow">Kant B — De setlist</p>
+        <h2 class="section-title">Uit ons repertoire</h2>
       </div>
+      <p class="rep-note reveal">Een greep uit onze setlist: een eerbetoon aan de blueslegendes, met eigen werk ertussen.</p>
     </div>
-  </section>
+    <ul class="tracklist reveal">
+      <li class="track"><span class="no">01</span><span class="name">Got My Mojo Working</span><span class="dots"></span><span class="by">Muddy Waters</span><span class="time">2:53</span></li>
+      <li class="track"><span class="no">02</span><span class="name">Rock Me Baby</span><span class="dots"></span><span class="by">B.B. King</span><span class="time">2:58</span></li>
+      <li class="track"><span class="no">03</span><span class="name">Sweet Little Angel</span><span class="dots"></span><span class="by">B.B. King</span><span class="time">3:12</span></li>
+      <li class="track"><span class="no">04</span><span class="name">Red House</span><span class="dots"></span><span class="by">Jimi Hendrix</span><span class="time">3:50</span></li>
+      <li class="track"><span class="no">05</span><span class="name">Cold Shot</span><span class="dots"></span><span class="by">Stevie Ray Vaughan</span><span class="time">4:01</span></li>
+      <li class="track"><span class="no">06</span><span class="name">Testify</span><span class="dots"></span><span class="by">Stevie Ray Vaughan</span><span class="time">3:22</span></li>
+      <li class="track"><span class="no">07</span><span class="name">Catfish Blues</span><span class="dots"></span><span class="by">Gary Clark Jr.</span><span class="time">8:00</span></li>
+      <li class="track"><span class="no">08</span><span class="name">When My Train Pulls In</span><span class="dots"></span><span class="by">Gary Clark Jr.</span><span class="time">7:46</span></li>
+      <li class="track"><span class="no">09</span><span class="name">Who Did You Think I Was</span><span class="dots"></span><span class="by">John Mayer</span><span class="time">4:23</span></li>
+      <li class="track"><span class="no">10</span><span class="name">Ain't No Sunshine</span><span class="dots"></span><span class="by">Bill Withers</span><span class="time">2:06</span></li>
+      <li class="track"><span class="no">11</span><span class="name">When I Get Mine</span><span class="dots"></span><span class="by">Josh Smith</span><span class="time">6:17</span></li>
+      <li class="track"><span class="no">12</span><span class="name">Keep On Lovin' Me Baby</span><span class="dots"></span><span class="by">The Paladins</span><span class="time">4:03</span></li>
+      <li class="track"><span class="no">13</span><span class="name">Stranger Blues</span><span class="dots"></span><span class="by">GA-20</span><span class="time">3:34</span></li>
+      <li class="track"><span class="no">14</span><span class="name">Run Chicken Run</span><span class="dots"></span><span class="by">Link Wray</span><span class="time">1:57</span></li>
+      <li class="track"><span class="no">15</span><span class="name">Abigail Blue <span class="tag">eigen werk</span></span><span class="dots"></span><span class="by">Lajos Tauber</span><span class="time">3:31</span></li>
+    </ul>
+  </div>
+</section>
 
-  <!-- ===================== REPERTOIRE ===================== -->
-  <section id="repertoire">
-    <div class="wrap">
-      <p class="eyebrow">Wat we spelen</p>
-      <h2 class="title">Uit ons repertoire</h2>
-      <p class="rep-note">
-        Een greep uit onze setlist — een eerbetoon aan de blueslegendes, met hier
-        en daar eigen werk ertussen.
-      </p>
-      <ul class="rep-list">
-        <li><span class="song">Got My Mojo Working</span><span class="artist">Muddy Waters</span></li>
-        <li><span class="song">Rock Me Baby</span><span class="artist">B.B. King</span></li>
-        <li><span class="song">Sweet Little Angel</span><span class="artist">B.B. King</span></li>
-        <li><span class="song">Red House</span><span class="artist">Jimi Hendrix</span></li>
-        <li><span class="song">Cold Shot</span><span class="artist">Stevie Ray Vaughan</span></li>
-        <li><span class="song">Testify</span><span class="artist">Stevie Ray Vaughan</span></li>
-        <li><span class="song">Catfish Blues</span><span class="artist">Gary Clark Jr.</span></li>
-        <li><span class="song">When My Train Pulls In</span><span class="artist">Gary Clark Jr.</span></li>
-        <li><span class="song">Who Did You Think I Was</span><span class="artist">John Mayer</span></li>
-        <li><span class="song">Ain't No Sunshine</span><span class="artist">Bill Withers</span></li>
-        <li><span class="song">When I Get Mine</span><span class="artist">Josh Smith</span></li>
-        <li><span class="song">Keep On Lovin' Me Baby</span><span class="artist">The Paladins</span></li>
-        <li><span class="song">Stranger Blues</span><span class="artist">GA-20</span></li>
-        <li><span class="song">Run Chicken Run</span><span class="artist">Link Wray</span></li>
-        <li><span class="song">Abigail Blue <span class="own">· eigen werk</span></span><span class="artist">Lajos Tauber</span></li>
-      </ul>
+<!-- ===================== MUZIEK ===================== -->
+<section id="muziek">
+  <div class="wrap">
+    <p class="eyebrow reveal">Kant B — Beluister</p>
+    <h2 class="section-title reveal" style="margin-bottom:1.4rem">In de studio &amp; live</h2>
+    <p class="music-note reveal">Plak hieronder de "insluiten" (embed) code van jullie Spotify-playlist of een YouTube-video. Vervang dit vak door jullie eigen embed.</p>
+    <div class="embed reveal">
+      ♪ &nbsp; Spotify / YouTube embed komt hier
+      <!-- Voorbeeld Spotify:  <iframe src="https://open.spotify.com/embed/playlist/PLAYLIST_ID" allow="encrypted-media"></iframe> -->
+      <!-- Voorbeeld YouTube:  <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== MUZIEK ===================== -->
-  <section id="muziek" style="background: var(--bg-soft);">
-    <div class="wrap">
-      <p class="eyebrow">Beluister</p>
-      <h2 class="title">Muziek</h2>
-      <p class="music-note">
-        Plak hieronder de "insluiten" (embed) code van jullie Spotify-playlist of
-        een YouTube-video. Vervang het vak hieronder door jullie eigen embed.
-      </p>
-      <div class="embed">
-        ♪ Embed van Spotify / YouTube komt hier
-        <!-- Voorbeeld Spotify-playlist:
-        <iframe src="https://open.spotify.com/embed/playlist/PLAYLIST_ID" allow="encrypted-media"></iframe>
-        Voorbeeld YouTube:
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-        -->
-      </div>
+<!-- ===================== AGENDA ===================== -->
+<section id="agenda">
+  <div class="wrap">
+    <p class="eyebrow reveal">Tournee — Live</p>
+    <h2 class="section-title reveal" style="margin-bottom:2.4rem">Agenda</h2>
+    <ul class="gigs reveal">
+      <li class="gig">
+        <span class="date">12.07</span>
+        <div><div class="venue">Naam locatie</div><div class="place">Stad · 20:30</div></div>
+        <span class="ticket">Gratis entree</span>
+      </li>
+      <li class="gig">
+        <span class="date">26.07</span>
+        <div><div class="venue">Naam festival</div><div class="place">Stad · 15:00</div></div>
+        <span class="ticket">Tickets</span>
+      </li>
+      <li class="gig">
+        <span class="date">09.08</span>
+        <div><div class="venue">Naam café</div><div class="place">Stad · 21:00</div></div>
+        <span class="ticket">Gratis entree</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal" style="justify-content:center">Boekingen</p>
+    <h2 class="section-title reveal">Laten we spelen.</h2>
+    <p class="reveal">Interesse om ons te boeken of gewoon hallo zeggen? Stuur een bericht — we komen graag langs.</p>
+    <a class="email reveal" href="mailto:info@lajostaubertrio.be">info@lajostaubertrio.be</a>
+    <div class="socials reveal">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">YouTube</a>
+      <a href="#">Spotify</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== AGENDA ===================== -->
-  <section id="agenda">
-    <div class="wrap">
-      <p class="eyebrow">Live</p>
-      <h2 class="title">Agenda</h2>
-      <ul class="gigs">
-        <li class="gig">
-          <span class="date">12 jul</span>
-          <div class="info">
-            <div class="venue">Naam locatie</div>
-            <div class="place">Stad · 20:30</div>
-          </div>
-          <span class="ticket">Gratis entree</span>
-        </li>
-        <li class="gig">
-          <span class="date">26 jul</span>
-          <div class="info">
-            <div class="venue">Naam festival</div>
-            <div class="place">Stad · 15:00</div>
-          </div>
-          <span class="ticket">Tickets</span>
-        </li>
-        <li class="gig">
-          <span class="date">09 aug</span>
-          <div class="info">
-            <div class="venue">Naam café</div>
-            <div class="place">Stad · 21:00</div>
-          </div>
-          <span class="ticket">Gratis entree</span>
-        </li>
-      </ul>
-    </div>
-  </section>
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  © <span id="year"></span> Lajos Tauber Trio — <b>Blues uit België</b>
+</footer>
 
-  <!-- ===================== CONTACT ===================== -->
-  <section id="contact" class="contact">
-    <div class="wrap">
-      <p class="eyebrow">Boekingen</p>
-      <h2 class="title">Neem contact op</h2>
-      <p>Interesse om ons te boeken of gewoon hallo zeggen? Stuur ons een bericht.</p>
-      <a class="email" href="mailto:info@lajostaubertrio.be">info@lajostaubertrio.be</a>
-      <div class="socials">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">YouTube</a>
-        <a href="#">Spotify</a>
-      </div>
-    </div>
-  </section>
+<script>
+  // Jaartal
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer>
-    © <span id="year"></span> Lajos Tauber Trio · Blues uit België
-  </footer>
+  // Nav-achtergrond bij scrollen
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
 
-  <script>
-    // Jaartal in de footer automatisch invullen
-    document.getElementById('year').textContent = new Date().getFullYear();
+  // Mobiel menu sluiten na klik
+  document.querySelectorAll('#navlinks a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open')));
 
-    // Mobiel menu sluiten na klikken op een link
-    document.querySelectorAll('#navlinks a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        document.getElementById('navlinks').classList.remove('open');
-      });
-    });
-  </script>
+  // Scroll-reveal
+  const els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  } else {
+    els.forEach(el => el.classList.add('in'));
+  }
+</script>
 
 </body>
 </html>
