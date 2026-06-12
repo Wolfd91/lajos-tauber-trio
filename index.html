@@ -3,28 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lajos Tauber Trio</title>
-  <meta name="description" content="Lajos Tauber Trio — live muziek voor jouw evenement, café of festival." />
+  <title>Lajos Tauber Trio — Blues</title>
+  <meta name="description" content="Lajos Tauber Trio — rauwe, soulvolle blues uit België. Live voor jouw café, festival of evenement." />
 
   <!-- ===================================================================
        Lettertypes (laden via internet; vallen terug op systeemfonts offline)
+       Oswald = posterachtige koppen · Inter = rustige lopende tekst
        =================================================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     /* ===================================================================
        KLEUREN & INSTELLINGEN  — pas hier makkelijk het thema aan
+       Smoky blues-palet: nachtblauw/antraciet met gedempt staalblauw accent
        =================================================================== */
     :root {
-      --bg:        #0f0e0c;   /* achtergrond, bijna zwart        */
-      --bg-soft:   #1a1815;   /* iets lichter vlak               */
-      --text:      #ece7df;   /* hoofdtekst, warm wit            */
-      --muted:     #a39c8e;   /* gedempte tekst                  */
-      --accent:    #c9a24b;   /* goud accent                     */
-      --accent-2:  #8a6d2f;   /* donkerder goud                  */
-      --border:    #2c2a25;   /* lijntjes                        */
+      --bg:        #0c0e11;   /* achtergrond, nachtblauw-zwart   */
+      --bg-soft:   #14181d;   /* iets lichter vlak               */
+      --text:      #dde2e7;   /* hoofdtekst, koel wit            */
+      --muted:     #8a939e;   /* gedempte tekst, leisteengrijs   */
+      --accent:    #7fa1b8;   /* gedempt staalblauw accent       */
+      --accent-2:  #4f6c80;   /* donkerder blauw                 */
+      --border:    #242a31;   /* lijntjes                        */
       --max:       1100px;    /* maximale breedte van de inhoud  */
     }
 
@@ -45,10 +47,10 @@
     }
 
     h1, h2, h3 {
-      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      font-family: 'Oswald', 'Arial Narrow', sans-serif;
       font-weight: 500;
-      line-height: 1.15;
-      letter-spacing: 0.01em;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
     }
 
     a { color: var(--accent); text-decoration: none; transition: color .2s; }
@@ -60,14 +62,19 @@
 
     .eyebrow {
       text-transform: uppercase;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.3em;
       font-size: 0.72rem;
       color: var(--accent);
       font-weight: 500;
       margin-bottom: 1rem;
     }
 
-    h2.title { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 2.5rem; }
+    h2.title {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2.5rem;
+    }
 
     /* ===================================================================
        NAVIGATIE
@@ -77,7 +84,7 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(10px);
-      background: rgba(15, 14, 12, 0.7);
+      background: rgba(12, 14, 17, 0.72);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner {
@@ -89,23 +96,24 @@
       padding: 1rem 1.5rem;
     }
     .brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      letter-spacing: 0.05em;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       color: var(--text);
     }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       color: var(--muted);
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     .nav-links a:hover { color: var(--accent); }
 
     .menu-toggle { display: none; background: none; border: 0; color: var(--text); font-size: 1.5rem; cursor: pointer; }
 
-    @media (max-width: 720px) {
+    @media (max-width: 760px) {
       .nav-links {
         position: absolute;
         top: 100%; left: 0; right: 0;
@@ -117,7 +125,7 @@
         overflow: hidden;
         transition: max-height .3s ease;
       }
-      .nav-links.open { max-height: 320px; }
+      .nav-links.open { max-height: 360px; }
       .nav-links a { padding: 1rem 1.5rem; border-top: 1px solid var(--border); }
       .menu-toggle { display: block; }
     }
@@ -126,7 +134,7 @@
        HERO
        =================================================================== */
     .hero {
-      min-height: 88vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -134,18 +142,20 @@
       text-align: center;
       padding: 4rem 1.5rem;
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(201,162,75,0.10), transparent 60%),
-        var(--bg);
+        radial-gradient(ellipse at 50% 10%, rgba(127,161,184,0.14), transparent 60%),
+        linear-gradient(180deg, #0c0e11 0%, #0a0c0f 100%);
       position: relative;
     }
     .hero h1 {
-      font-size: clamp(2.8rem, 9vw, 6rem);
-      letter-spacing: 0.02em;
+      font-size: clamp(3rem, 11vw, 7rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-weight: 600;
     }
     .hero .tagline {
       color: var(--muted);
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      letter-spacing: 0.18em;
+      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       margin-top: 1.5rem;
     }
@@ -160,7 +170,7 @@
       border: 1px solid var(--accent);
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       font-size: 0.8rem;
       border-radius: 2px;
       transition: all .25s;
@@ -176,16 +186,16 @@
       gap: 3rem;
       align-items: center;
     }
-    .about-grid p { color: var(--muted); margin-bottom: 1.2rem; max-width: 48ch; }
+    .about-grid p { color: var(--muted); margin-bottom: 1.2rem; max-width: 50ch; }
     .about-photo {
       aspect-ratio: 4/3;
-      background: linear-gradient(135deg, var(--bg-soft), #211d17);
+      background: linear-gradient(135deg, var(--bg-soft), #1b2128);
       border: 1px solid var(--border);
       border-radius: 4px;
       display: flex; align-items: center; justify-content: center;
       color: var(--muted); font-size: 0.85rem; text-align: center; padding: 1rem;
     }
-    @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
 
     /* ===================================================================
        LEDEN
@@ -203,11 +213,36 @@
       margin: 0 auto 1.2rem;
       background: linear-gradient(135deg, var(--accent-2), var(--accent));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--bg);
+      font-family: 'Oswald', sans-serif; font-size: 1.8rem; color: var(--bg);
+      letter-spacing: 0.05em;
     }
-    .member h3 { font-size: 1.5rem; margin-bottom: 0.3rem; }
-    .member .role { color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; }
-    @media (max-width: 720px) { .members { grid-template-columns: 1fr; } }
+    .member h3 { font-size: 1.55rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.3rem; }
+    .member .role { color: var(--accent); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; }
+    .member .city { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+    @media (max-width: 760px) { .members { grid-template-columns: 1fr; } }
+
+    /* ===================================================================
+       REPERTOIRE
+       =================================================================== */
+    .rep-note { color: var(--muted); margin-bottom: 2.5rem; max-width: 55ch; }
+    .rep-list {
+      list-style: none;
+      columns: 2;
+      column-gap: 3rem;
+    }
+    .rep-list li {
+      break-inside: avoid;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+    }
+    .rep-list .song { color: var(--text); font-weight: 400; }
+    .rep-list .artist { color: var(--muted); font-size: 0.85rem; text-align: right; white-space: nowrap; }
+    .rep-list .own { color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    @media (max-width: 760px) { .rep-list { columns: 1; } }
 
     /* ===================================================================
        MUZIEK
@@ -234,27 +269,28 @@
       flex-wrap: wrap;
     }
     .gig .date {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Oswald', sans-serif;
       font-size: 1.4rem; color: var(--accent);
-      min-width: 110px;
+      min-width: 110px; letter-spacing: 0.03em;
     }
     .gig .info { flex: 1; min-width: 200px; }
     .gig .info .venue { color: var(--text); font-size: 1.05rem; }
-    .gig .info .city { color: var(--muted); font-size: 0.9rem; }
+    .gig .info .place { color: var(--muted); font-size: 0.9rem; }
     .gig .ticket { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
     /* ===================================================================
        CONTACT
        =================================================================== */
     .contact { text-align: center; background: var(--bg-soft); }
-    .contact p { color: var(--muted); max-width: 45ch; margin: 0 auto 2rem; }
+    .contact p { color: var(--muted); max-width: 48ch; margin: 0 auto 2rem; }
     .contact .email {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      text-transform: uppercase; letter-spacing: 0.04em;
       color: var(--text);
     }
-    .socials { margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; }
-    .socials a { color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; }
+    .socials { margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .socials a { color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; }
 
     /* ===================================================================
        FOOTER
@@ -277,7 +313,8 @@
       <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
       <ul class="nav-links" id="navlinks">
         <li><a href="#over">Over ons</a></li>
-        <li><a href="#leden">Leden</a></li>
+        <li><a href="#leden">Bezetting</a></li>
+        <li><a href="#repertoire">Repertoire</a></li>
         <li><a href="#muziek">Muziek</a></li>
         <li><a href="#agenda">Agenda</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -288,7 +325,7 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
     <h1>Lajos Tauber Trio</h1>
-    <p class="tagline">Live muziek met ziel</p>
+    <p class="tagline">Rauwe &amp; soulvolle blues</p>
     <span class="divider"></span>
     <a class="btn" href="#contact">Boek ons</a>
   </section>
@@ -299,15 +336,18 @@
       <p class="eyebrow">Over ons</p>
       <div class="about-grid">
         <div>
-          <h2 class="title">Drie muzikanten,<br/>één klank.</h2>
+          <h2 class="title">Drie man,<br/>één groove.</h2>
           <p>
-            Het Lajos Tauber Trio brengt een warm, intiem geluid dat luisteraars
-            meeneemt van de eerste tot de laatste noot. (Pas deze tekst aan met
-            jullie eigen verhaal — hoe de band is ontstaan, jullie stijl en sfeer.)
+            Het Lajos Tauber Trio is een Belgisch bluestrio dat het vuur van de
+            grote bluesmeesters opnieuw aanwakkert. Van de slepende grooves van
+            Muddy Waters tot het rauwe gitaarwerk van Stevie Ray Vaughan en Gary
+            Clark Jr. — wij spelen de blues zoals die hoort: met lef en gevoel.
           </p>
           <p>
-            Of het nu gaat om een sfeervolle avond in een café, een bruiloft of
-            een festivalpodium: wij maken er een onvergetelijke ervaring van.
+            Naast de classics brengen we ook eigen werk. Of het nu een
+            sfeervolle avond in een café is, een festivalpodium of een privéfeest:
+            wij zorgen voor een avond vol soul. <em>(Pas deze tekst gerust aan
+            naar jullie eigen verhaal.)</em>
           </p>
         </div>
         <div class="about-photo">📷 Voeg hier een bandfoto toe</div>
@@ -315,43 +355,77 @@
     </div>
   </section>
 
-  <!-- ===================== LEDEN ===================== -->
+  <!-- ===================== BEZETTING ===================== -->
   <section id="leden" style="background: var(--bg-soft);">
     <div class="wrap">
       <p class="eyebrow">De band</p>
-      <h2 class="title">Leden</h2>
+      <h2 class="title">Bezetting</h2>
       <div class="members">
         <div class="member">
           <div class="avatar">LT</div>
           <h3>Lajos Tauber</h3>
-          <p class="role">Naam instrument</p>
+          <p class="role">Gitaar</p>
+          <p class="city">Gent</p>
         </div>
         <div class="member">
-          <div class="avatar">??</div>
-          <h3>Bandlid twee</h3>
-          <p class="role">Naam instrument</p>
+          <div class="avatar">Wd</div>
+          <h3>Wolf d'Anvers</h3>
+          <p class="role">Bas</p>
+          <p class="city">Knokke</p>
         </div>
         <div class="member">
-          <div class="avatar">??</div>
-          <h3>Bandlid drie</h3>
-          <p class="role">Naam instrument</p>
+          <div class="avatar">LF</div>
+          <h3>Louis Feys</h3>
+          <p class="role">Drums</p>
+          <p class="city">Oostende</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== MUZIEK ===================== -->
-  <section id="muziek">
+  <!-- ===================== REPERTOIRE ===================== -->
+  <section id="repertoire">
     <div class="wrap">
-      <p class="eyebrow">Luister</p>
+      <p class="eyebrow">Wat we spelen</p>
+      <h2 class="title">Uit ons repertoire</h2>
+      <p class="rep-note">
+        Een greep uit onze setlist — een eerbetoon aan de blueslegendes, met hier
+        en daar eigen werk ertussen.
+      </p>
+      <ul class="rep-list">
+        <li><span class="song">Got My Mojo Working</span><span class="artist">Muddy Waters</span></li>
+        <li><span class="song">Rock Me Baby</span><span class="artist">B.B. King</span></li>
+        <li><span class="song">Sweet Little Angel</span><span class="artist">B.B. King</span></li>
+        <li><span class="song">Red House</span><span class="artist">Jimi Hendrix</span></li>
+        <li><span class="song">Cold Shot</span><span class="artist">Stevie Ray Vaughan</span></li>
+        <li><span class="song">Testify</span><span class="artist">Stevie Ray Vaughan</span></li>
+        <li><span class="song">Catfish Blues</span><span class="artist">Gary Clark Jr.</span></li>
+        <li><span class="song">When My Train Pulls In</span><span class="artist">Gary Clark Jr.</span></li>
+        <li><span class="song">Who Did You Think I Was</span><span class="artist">John Mayer</span></li>
+        <li><span class="song">Ain't No Sunshine</span><span class="artist">Bill Withers</span></li>
+        <li><span class="song">When I Get Mine</span><span class="artist">Josh Smith</span></li>
+        <li><span class="song">Keep On Lovin' Me Baby</span><span class="artist">The Paladins</span></li>
+        <li><span class="song">Stranger Blues</span><span class="artist">GA-20</span></li>
+        <li><span class="song">Run Chicken Run</span><span class="artist">Link Wray</span></li>
+        <li><span class="song">Abigail Blue <span class="own">· eigen werk</span></span><span class="artist">Lajos Tauber</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== MUZIEK ===================== -->
+  <section id="muziek" style="background: var(--bg-soft);">
+    <div class="wrap">
+      <p class="eyebrow">Beluister</p>
       <h2 class="title">Muziek</h2>
       <p class="music-note">
-        Plak hieronder de "insluiten" (embed) code van een Spotify-, YouTube- of
-        SoundCloud-nummer. Vervang het vak hieronder door jullie eigen embed.
+        Plak hieronder de "insluiten" (embed) code van jullie Spotify-playlist of
+        een YouTube-video. Vervang het vak hieronder door jullie eigen embed.
       </p>
       <div class="embed">
-        ♪ Embed van Spotify / YouTube / SoundCloud komt hier
-        <!-- Voorbeeld YouTube:
+        ♪ Embed van Spotify / YouTube komt hier
+        <!-- Voorbeeld Spotify-playlist:
+        <iframe src="https://open.spotify.com/embed/playlist/PLAYLIST_ID" allow="encrypted-media"></iframe>
+        Voorbeeld YouTube:
         <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
         -->
       </div>
@@ -359,7 +433,7 @@
   </section>
 
   <!-- ===================== AGENDA ===================== -->
-  <section id="agenda" style="background: var(--bg-soft);">
+  <section id="agenda">
     <div class="wrap">
       <p class="eyebrow">Live</p>
       <h2 class="title">Agenda</h2>
@@ -368,7 +442,7 @@
           <span class="date">12 jul</span>
           <div class="info">
             <div class="venue">Naam locatie</div>
-            <div class="city">Stad · 20:30</div>
+            <div class="place">Stad · 20:30</div>
           </div>
           <span class="ticket">Gratis entree</span>
         </li>
@@ -376,7 +450,7 @@
           <span class="date">26 jul</span>
           <div class="info">
             <div class="venue">Naam festival</div>
-            <div class="city">Stad · 15:00</div>
+            <div class="place">Stad · 15:00</div>
           </div>
           <span class="ticket">Tickets</span>
         </li>
@@ -384,7 +458,7 @@
           <span class="date">09 aug</span>
           <div class="info">
             <div class="venue">Naam café</div>
-            <div class="city">Stad · 21:00</div>
+            <div class="place">Stad · 21:00</div>
           </div>
           <span class="ticket">Gratis entree</span>
         </li>
@@ -398,7 +472,7 @@
       <p class="eyebrow">Boekingen</p>
       <h2 class="title">Neem contact op</h2>
       <p>Interesse om ons te boeken of gewoon hallo zeggen? Stuur ons een bericht.</p>
-      <a class="email" href="mailto:info@lajostaubertrio.nl">info@lajostaubertrio.nl</a>
+      <a class="email" href="mailto:info@lajostaubertrio.be">info@lajostaubertrio.be</a>
       <div class="socials">
         <a href="#">Instagram</a>
         <a href="#">Facebook</a>
@@ -410,7 +484,7 @@
 
   <!-- ===================== FOOTER ===================== -->
   <footer>
-    © <span id="year"></span> Lajos Tauber Trio · Alle rechten voorbehouden
+    © <span id="year"></span> Lajos Tauber Trio · Blues uit België
   </footer>
 
   <script>
