@@ -292,10 +292,10 @@ header.nav.scrolled{
   box-shadow:0 30px 70px -30px rgba(0,0,0,.9);
 }
 .embed iframe{ width:100%; height:100%; border:0; border-radius:2px; }
-.video-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; }
+.video-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:1.6rem; }
 .embed-item figcaption{ margin-top:.85rem; font-family:var(--mono); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--paper-dim); }
 .embed-item figcaption b{ color:var(--paper); font-weight:500; }
-@media(max-width:760px){ .video-grid{ grid-template-columns:1fr; gap:2.2rem; } }
+@media(max-width:560px){ .video-grid{ gap:2.2rem; } }
 
 /* =====================================================================
    AGENDA
@@ -506,6 +506,12 @@ footer b{ color:var(--ember); font-weight:500; }
           <iframe src="https://www.youtube.com/embed/UzXrr7F9tF4" title="Lajos Tauber Trio — Catfish Blues" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <figcaption><b>Catfish Blues</b> — Gary Clark Jr.</figcaption>
+      </figure>
+      <figure class="embed-item">
+        <div class="embed">
+          <iframe src="https://www.youtube.com/embed/ugxlP64Ksm0" title="Lajos Tauber Trio — Run Chicken Run" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>Run Chicken Run</b> — Link Wray</figcaption>
       </figure>
       <!-- Nog een video toevoegen? Kopieer een <figure class="embed-item">…</figure> blok en gebruik het youtube.com/embed/VIDEO-ID formaat (dus NIET youtu.be/...). -->
     </div>
