@@ -292,6 +292,10 @@ header.nav.scrolled{
   box-shadow:0 30px 70px -30px rgba(0,0,0,.9);
 }
 .embed iframe{ width:100%; height:100%; border:0; border-radius:2px; }
+.video-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; }
+.embed-item figcaption{ margin-top:.85rem; font-family:var(--mono); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--paper-dim); }
+.embed-item figcaption b{ color:var(--paper); font-weight:500; }
+@media(max-width:760px){ .video-grid{ grid-template-columns:1fr; gap:2.2rem; } }
 
 /* =====================================================================
    AGENDA
@@ -490,9 +494,20 @@ footer b{ color:var(--ember); font-weight:500; }
     <p class="eyebrow reveal">Kant B — Beluister</p>
     <h2 class="section-title reveal" style="margin-bottom:1.4rem">In de studio &amp; live</h2>
     <p class="music-note reveal">Bekijk ons live in actie — en plak hier later gerust nog extra video's of een Spotify-playlist bij.</p>
-    <div class="embed reveal">
-      <iframe src="https://www.youtube.com/embed/34ECS7P5aDo" title="Lajos Tauber Trio — live" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      <!-- Nog een video toevoegen? Kopieer een nieuw <div class="embed">…</div> blok en gebruik het youtube.com/embed/VIDEO-ID formaat (dus NIET youtu.be/...). -->
+    <div class="video-grid reveal">
+      <figure class="embed-item">
+        <div class="embed">
+          <iframe src="https://www.youtube.com/embed/34ECS7P5aDo" title="Lajos Tauber Trio — When I Get Mine" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>When I Get Mine</b> — Josh Smith</figcaption>
+      </figure>
+      <figure class="embed-item">
+        <div class="embed">
+          <iframe src="https://www.youtube.com/embed/UzXrr7F9tF4" title="Lajos Tauber Trio — Catfish Blues" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <figcaption><b>Catfish Blues</b> — Gary Clark Jr.</figcaption>
+      </figure>
+      <!-- Nog een video toevoegen? Kopieer een <figure class="embed-item">…</figure> blok en gebruik het youtube.com/embed/VIDEO-ID formaat (dus NIET youtu.be/...). -->
     </div>
   </div>
 </section>
