@@ -287,10 +287,9 @@ header.nav.scrolled{
    ===================================================================== */
 .music-note{ color:var(--paper-dim); max-width:50ch; margin-bottom:2.2rem; }
 .embed{
-  aspect-ratio:16/7; border:1px dashed var(--line); border-radius:2px;
+  aspect-ratio:16/9; border:1px solid var(--line); border-radius:2px; overflow:hidden;
   background:radial-gradient(circle at 50% 50%, rgba(111,144,152,.10), transparent 60%), var(--ink-2);
-  display:flex; align-items:center; justify-content:center; text-align:center; padding:1.6rem;
-  color:var(--paper-dim); font-family:var(--mono); font-size:.82rem; letter-spacing:.06em;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.9);
 }
 .embed iframe{ width:100%; height:100%; border:0; border-radius:2px; }
 
@@ -490,11 +489,10 @@ footer b{ color:var(--ember); font-weight:500; }
   <div class="wrap">
     <p class="eyebrow reveal">Kant B — Beluister</p>
     <h2 class="section-title reveal" style="margin-bottom:1.4rem">In de studio &amp; live</h2>
-    <p class="music-note reveal">Plak hieronder de "insluiten" (embed) code van jullie Spotify-playlist of een YouTube-video. Vervang dit vak door jullie eigen embed.</p>
+    <p class="music-note reveal">Bekijk ons live in actie — en plak hier later gerust nog extra video's of een Spotify-playlist bij.</p>
     <div class="embed reveal">
-      ♪ &nbsp; Spotify / YouTube embed komt hier
-      <!-- Voorbeeld Spotify:  <iframe src="https://open.spotify.com/embed/playlist/PLAYLIST_ID" allow="encrypted-media"></iframe> -->
-      <!-- Voorbeeld YouTube:  <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+      <iframe src="https://www.youtube.com/embed/34ECS7P5aDo" title="Lajos Tauber Trio — live" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <!-- Nog een video toevoegen? Kopieer een nieuw <div class="embed">…</div> blok en gebruik het youtube.com/embed/VIDEO-ID formaat (dus NIET youtu.be/...). -->
     </div>
   </div>
 </section>
